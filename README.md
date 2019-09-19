@@ -28,8 +28,8 @@ Displays a feed of recent posts, each wrapped in a specified partial.
 | order | No | desc | desc, asc |
 | posts_per_page | No | current posts per page option | integer |
 | category_name | No | pipe-delimited list of category slugs |
-| custom_fields | No | pipe-delimited list of custom field names (requires active install of [Advanced Custom Fields](https://www.advancedcustomfields.com) plugin) |
-| template | No | theme-dir/filename full path to partial to render shortcode |
+| custom_fields | No | pipe-delimited list of custom field names |
+| template | No | /wp-content/plugins/gd-tools/public/partials/gd_tools_post_feed-template.php | any full full path to a php partial | 
 
 #### Example 
 

@@ -69,7 +69,7 @@ class Gd_Tools_Shortcodes {
    * Check active plugins for an Advanced Custom Fields plugin installation.
    * @return boolean
    */
-	public static function acf_active() {
+	public function acf_active() {
   	
   	$active_plugins = get_option('active_plugins');
   	
@@ -87,7 +87,10 @@ class Gd_Tools_Shortcodes {
 	}
 	
 	
-// This is a short code for returning a block of posts.
+/**
+ * Return a feed of posts from a shortcode.
+ * @return string
+ */
 public static function gd_post_feed( $atts ) {
  
     $str = '';
@@ -113,7 +116,7 @@ public static function gd_post_feed( $atts ) {
    
    
    // Check for Advanced Custom Fields in atts and plugins.
-   if ( $a['custom_fields'] != '' && self::acf_active() === true ) {
+   if ( $a['custom_fields'] != '' ) {
      $custom_fields = explode("|",$a['custom_fields']);
     }
 
@@ -133,11 +136,10 @@ public static function gd_post_feed( $atts ) {
      $the_date = get_the_date($a['date_format']);
      $the_content = get_the_content();
      
-
+     
      foreach( $custom_fields as $key ) {
-       $$key = get_field($key);
+      $$key = get_post_meta(get_the_id(), $key, true );
      }
-
      
      $a['template'] = '/' . trim( $a['template'], '/' );
      
