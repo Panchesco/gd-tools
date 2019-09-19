@@ -33,13 +33,14 @@ Displays a feed of recent posts, each wrapped in a specified partial.
 
 #### Variables
 
-* $the_title
-* $the_content
-* $the_permalink
-* $the_post_thumbnail
-* $the_post_thumbnail_url
 * $the_datetime
 * $the_date
+* $the_title
+* $the_permalink
+* $the_excerpt
+* $the_content
+* $the_post_thumbnail
+* $the_post_thumbnail_url
 * $custom_field
 
 #### Examples
