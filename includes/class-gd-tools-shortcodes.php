@@ -65,12 +65,34 @@ class Gd_Tools_Shortcodes {
 		$this->plugin_name = 'gd-tools';
 	}
 	
+	/**
+   * Check active plugins for an Advanced Custom Fields plugin installation.
+   * @return boolean
+   */
+	public static function acf_active() {
+  	
+  	$active_plugins = get_option('active_plugins');
+  	
+  	foreach( $active_plugins as $plugin ) {
+
+    	if( substr($plugin, 0, 22) == 'advanced-custom-fields' ) {
+      	
+      	return true;
+      	
+    	}
+  	} 
+  	
+  	return false;
+  	
+	}
+	
 	
 // This is a short code for returning a block of posts.
 public static function gd_post_feed( $atts ) {
  
     $str = '';
     $path = false;
+    $custom_fields = array();
    
    $a = shortcode_atts( array(
       'date_format' => get_option('date_format'),
@@ -89,8 +111,12 @@ public static function gd_post_feed( $atts ) {
    $args['order'] = $a['order'];
    $args['posts_per_page'] = $a['posts_per_page'];
    
-   $custom_fields = explode("|",$a['custom_fields']);
    
+   // Check for Advanced Custom Fields in atts and plugins.
+   if ( $a['custom_fields'] != '' && self::acf_active() === true ) {
+     $custom_fields = explode("|",$a['custom_fields']);
+    }
+
    $query = new WP_Query($args);
    
    if( $query->have_posts() ) {
@@ -107,10 +133,11 @@ public static function gd_post_feed( $atts ) {
      $the_date = get_the_date($a['date_format']);
      $the_content = get_the_content();
      
-     // Set custom fields to vars.
+
      foreach( $custom_fields as $key ) {
        $$key = get_field($key);
      }
+
      
      $a['template'] = '/' . trim( $a['template'], '/' );
      
