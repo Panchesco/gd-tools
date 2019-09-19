@@ -34,6 +34,7 @@ Displays a feed of recent posts, each wrapped in a specified partial.
 #### Variables
 
 * $the_title
+* $the_content
 * $the_permalink
 * $the_post_thumbnail
 * $the_post_thumbnail_url
@@ -68,3 +69,17 @@ $template = '
 </div>
 ';
 ```
+
+```
+$template = <<<EOT
+<article>
+  <time datetime="$the_datetime">$the_date</time>
+  <h2><a href="$the_permalink">$the_title</a></h2>
+  <h3>$custom_field</h3>
+  <p>$the_excerpt</p>
+</article>
+<!-- END -->      
+EOT;
+```
+
+---

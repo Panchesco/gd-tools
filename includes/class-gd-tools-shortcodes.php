@@ -134,6 +134,7 @@ public static function gd_post_feed( $atts ) {
      $the_title = get_the_title();
      $the_datetime = get_the_date('c');
      $the_date = get_the_date($a['date_format']);
+     $the_excerpt = get_the_excerpt();
      $the_content = get_the_content();
      
      
