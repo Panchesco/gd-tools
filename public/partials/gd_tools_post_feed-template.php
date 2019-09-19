@@ -16,6 +16,7 @@
 <?php 
 $template = <<<EOT
 <!-- Add post feed shortcode HTML and variables beteen these comments.  -->   
-   
+
+
 <!-- END -->      
 EOT;

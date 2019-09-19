@@ -141,7 +141,9 @@ public static function gd_post_feed( $atts ) {
       $$key = get_post_meta(get_the_id(), $key, true );
      }
      
-     $a['template'] = '/' . trim( $a['template'], '/' );
+     if( ! empty($a['template']) ) {
+      $a['template'] = '/' . trim( $a['template'], '/' );
+     }
      
      if( file_exists( get_template_directory() . $a['template'] . '.php') ) {
        echo '.php branch';
